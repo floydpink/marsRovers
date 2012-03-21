@@ -1,2 +1,10 @@
 
 /Results
+/lib/nunit-console-runner.dll
+/lib/nunit-console.exe
+/lib/nunit-gui-runner.dll
+/lib/nunit.core.dll
+/lib/nunit.core.interfaces.dll
+/lib/nunit.uiexception.dll
+/lib/nunit.uikit.dll
+/lib/nunit.util.dll
