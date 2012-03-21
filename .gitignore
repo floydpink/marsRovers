@@ -8,3 +8,5 @@
 /lib/nunit.uiexception.dll
 /lib/nunit.uikit.dll
 /lib/nunit.util.dll
+/source/Nasa.Mars.Rovers.Control.Tests/TestResult.xml
+/source/Nasa.Mars.Rovers.Control.Tests/Nasa.Mars.Rovers.Control.Tests.csproj.VisualState.xml
