@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{32741121-1D62-4397-AD66-D84CBBCE5BD4}</ProjectGuid>
+    <ProjectGuid>{79F8ADE5-E142-48DC-9EC8-40A2BC2C9904}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nasa.Mars.Rovers.Control.Tests</RootNamespace>
@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nasa.Mars.Rovers.Control\Nasa.Mars.Rovers.Control.csproj">
-      <Project>{4F30023F-D97A-4543-A225-79D53CD20C3B}</Project>
+      <Project>{970BAC38-E4FC-47A6-B934-8EE8FE2DAC80}</Project>
       <Name>Nasa.Mars.Rovers.Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nasa.Mars.Rovers.Model\Nasa.Mars.Rovers.Model.csproj">

@@ -6,7 +6,6 @@ namespace Nasa.Mars.Rovers.Model.Interfaces
         int Easting { get; }
         int Northing { get;  }
         Direction Heading { get;  }
-        IPlateau Plateau { get; }
         
         void Navigate(Command command);
     }

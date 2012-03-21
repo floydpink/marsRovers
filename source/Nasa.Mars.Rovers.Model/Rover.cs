@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Nasa.Mars.Rovers.Model.Extensions;
 using Nasa.Mars.Rovers.Model.Interfaces;
 
 namespace Nasa.Mars.Rovers.Model
 {
-    class Rover : IRover
+    public class Rover : IRover
     {
         private int _easting;
         private int _northing;
@@ -34,14 +35,36 @@ namespace Nasa.Mars.Rovers.Model
             get { return _heading; }
         }
 
-        public IPlateau Plateau
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         public void Navigate(Command command)
         {
-            throw new NotImplementedException();
+            if (command == Command.Move)
+            {
+                var heading = Convert.ToInt32(_heading).ToRadian();
+                _easting += (int)Math.Cos(heading);
+                _northing += (int)Math.Sin(heading);
+            }
+            else
+            {
+                _heading = Convert.ToInt32(_heading + calculateTurn(command)).ToDirection();
+            }
+        }
+
+        internal static int calculateTurn(Command command)
+        {
+            int turnmount = AppConstants.TurnInDegrees;
+            switch (command)
+            {
+                case Command.Left:
+                    turnmount *= +1;
+                    break;
+                case Command.Right:
+                    turnmount *= -1;
+                    break;
+                default:
+                    turnmount *= 0;
+                    break;
+            }
+            return turnmount;
         }
     }
 }

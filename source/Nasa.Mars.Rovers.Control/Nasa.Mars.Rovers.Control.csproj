@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4F30023F-D97A-4543-A225-79D53CD20C3B}</ProjectGuid>
+    <ProjectGuid>{970BAC38-E4FC-47A6-B934-8EE8FE2DAC80}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nasa.Mars.Rovers.Control</RootNamespace>

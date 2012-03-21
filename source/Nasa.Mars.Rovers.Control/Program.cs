@@ -14,7 +14,7 @@ namespace Nasa.Mars.Rovers.Control
 
             }
             catch (Exception ex) {
-                
+                Console.WriteLine(ex.ToString());
             }
             finally
             {

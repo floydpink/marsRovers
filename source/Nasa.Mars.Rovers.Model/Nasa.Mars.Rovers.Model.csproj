@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConstants.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Interfaces\IPlateau.cs" />
     <Compile Include="Interfaces\IRover.cs" />
     <Compile Include="Plateau.cs" />
