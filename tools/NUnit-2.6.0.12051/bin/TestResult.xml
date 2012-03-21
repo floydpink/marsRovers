@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\dev\marsRovers\Results\bin\Nasa.Mars.Rovers.Console.Tests.dll" total="2" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-03-21" time="03:37:14">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\dev\marsRovers\tools\NUnit-2.6.0.12051\bin" machine-name="MALUTTY-HP" user="Hari" user-domain="Malutty-HP" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\dev\marsRovers\Results\bin\Nasa.Mars.Rovers.Console.Tests.dll" executed="True" result="Success" success="True" time="0.206" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Nasa" executed="True" result="Success" success="True" time="0.183" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Mars" executed="True" result="Success" success="True" time="0.182" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Rovers" executed="True" result="Success" success="True" time="0.182" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Logic" executed="True" result="Success" success="True" time="0.181" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.181" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="CommandMapperTests" executed="True" result="Success" success="True" time="0.178" asserts="0">
+                            <results>
+                              <test-case name="Nasa.Mars.Rovers.Logic.Tests.CommandMapperTests.should_correctly_map_series_of_instructions_in_string_format_to_enum" executed="True" result="Success" success="True" time="0.139" asserts="6" />
+                              <test-case name="Nasa.Mars.Rovers.Logic.Tests.CommandMapperTests.should_throw_exception_when_invalid_instruction_is_input" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
