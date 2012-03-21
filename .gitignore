@@ -10,3 +10,5 @@
 /lib/nunit.util.dll
 /source/Nasa.Mars.Rovers.Control.Tests/TestResult.xml
 /source/Nasa.Mars.Rovers.Control.Tests/Nasa.Mars.Rovers.Control.Tests.csproj.VisualState.xml
+/source/Nasa.Mars.Rovers.Model.Tests/Nasa.Mars.Rovers.Model.Tests.csproj.VisualState.xml
+/source/Nasa.Mars.Rovers.Model.Tests/TestResult.xml

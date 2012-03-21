@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Nasa.Mars.Rovers.Model.Tests
+namespace Nasa.Mars.Rovers.Control.Tests
 {
     class TestDebugger
     {
