@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandMapperTests.cs" />
+    <Compile Include="CommandsParserTests.cs" />
     <Compile Include="ControlConsoleTests.cs" />
     <Compile Include="PlateauParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

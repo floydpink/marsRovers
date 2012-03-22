@@ -6,7 +6,7 @@ using Nasa.Mars.Rovers.Model;
 
 namespace Nasa.Mars.Rovers.Control.Helpers
 {
-    public static class CommandMapper
+    public static class CommandsParser
     {
         public static IEnumerable<Command> Map(string commands)
         {

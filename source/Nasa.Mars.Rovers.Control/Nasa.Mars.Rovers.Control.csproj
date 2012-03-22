@@ -78,7 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\CommandMapper.cs" />
+    <Compile Include="Helpers\CommandsParser.cs" />
     <Compile Include="Helpers\PlateauParser.cs" />
     <Compile Include="Helpers\RoverPositionHeadingMapper.cs" />
     <Compile Include="Program.cs" />
