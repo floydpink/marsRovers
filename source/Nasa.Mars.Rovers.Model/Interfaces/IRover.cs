@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace Nasa.Mars.Rovers.Model.Interfaces
+﻿namespace Nasa.Mars.Rovers.Model.Interfaces
 {
     public interface IRover
     {

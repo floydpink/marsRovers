@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using Nasa.Mars.Rovers.Control.Parsers;
 using Nasa.Mars.Rovers.Model;
 using Nasa.Mars.Rovers.Model.Interfaces;
@@ -33,7 +32,7 @@ namespace Nasa.Mars.Rovers.Control
                     if (inputData.Count != 0)
                     {
                         Console.WriteLine(string.Empty);
-                        Console.WriteLine("The input captured is:");
+                        Console.WriteLine(AppConstants.InputCapturedPrefix);
                         Console.WriteLine(string.Empty);
                         foreach (var data in inputData)
                         {
@@ -45,21 +44,21 @@ namespace Nasa.Mars.Rovers.Control
                     else
                     {
                         Console.WriteLine(string.Empty);
-                        Console.WriteLine("Nothing to do here. Good bye!");
+                        Console.WriteLine(AppConstants.GoodBye);
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("An error has occured...");
+                Console.WriteLine(AppConstants.ErrorPrefix);
                 Console.WriteLine(ex.Message);
             }
             finally
             {
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("_______________________");
-                Console.WriteLine("Press return to exit...");
+                Console.WriteLine(AppConstants.ExitMessageOverline);
+                Console.WriteLine(AppConstants.ExitMessage);
                 Console.ReadLine();
             }
         }
@@ -86,22 +85,13 @@ namespace Nasa.Mars.Rovers.Control
         private static void printTestDataFormat()
         {
             Console.WriteLine(string.Empty);
-            Console.WriteLine("x y\t\t// x & y int - plateau's top-right corner co-ordinates");
-            Console.WriteLine("a b 'h'\t\t// a & b int - rover #1's position & 'h' char - heading");
-            Console.WriteLine("'c''c'...'c'\t// each 'c' char - sequential navigation commands to rover #1");
-            Console.WriteLine("l m 'h'\t\t// rover #2 position and heading");
-            Console.WriteLine("'c''c'...'c'\t// rover #2 navigation commands");
-            Console.WriteLine("...\t\t// keep going for n rovers");
-            Console.WriteLine("...");
-            Console.WriteLine("...");
-            Console.WriteLine("p q 'h'\t\t// rover #n position and heading");
-            Console.WriteLine("'c''c'...'c'\t// rover #n navigation commands");
+            Console.WriteLine(AppConstants.TestDataInputFormat);
         }
 
         private static List<string> getInputFromFile()
         {
             List<string> fileInputData = new List<string>();
-            Console.WriteLine("Type the path to the file with input data in the below format:");
+            Console.WriteLine(AppConstants.InputDataFilePathQuestion);
             printTestDataFormat();
 
             bool validInputFile = false;
@@ -119,7 +109,7 @@ namespace Nasa.Mars.Rovers.Control
                 }
                 else
                 {
-                    Console.WriteLine(string.Format("You entered '{0}', and no such file exists. Try again or type 'e' to exit:", inputFilePath));
+                    Console.WriteLine(string.Format(AppConstants.InputDataFilePathQuestionRepeatFormat, inputFilePath));
                 }
             }
 
@@ -130,9 +120,9 @@ namespace Nasa.Mars.Rovers.Control
         {
             List<string> stdInData = new List<string>();
             Console.WriteLine(string.Empty);
-            Console.WriteLine("Type in the test data in the below format:");
+            Console.WriteLine(AppConstants.ManualTestDataInputQuestion);
             printTestDataFormat();
-            Console.WriteLine("\t\t// empty line marking the end of test data input");
+            Console.WriteLine(AppConstants.EmptyLineInFormatForManualInput);
             Console.WriteLine(string.Empty);
 
             bool endOfTestData = false;
@@ -160,8 +150,7 @@ namespace Nasa.Mars.Rovers.Control
 
             if (inputData.Count % 2 == 1)
             {
-                throw new InvalidDataException("...while processing the Rovers data.\r\n" +
-                    "Each rover needs two lines of data as detailed above.");
+                throw new InvalidDataException(AppConstants.RoversDataNeedsTwoLines);
             }
 
             var roversAndInstructions = new Dictionary<IRover, IEnumerable<Command>>();
@@ -220,12 +209,11 @@ namespace Nasa.Mars.Rovers.Control
         {
             var fileOrStdOut = string.Empty;
             Console.WriteLine(string.Empty);
-            Console.WriteLine("Done processing the input!");
+            Console.WriteLine(AppConstants.DoneProcessing);
             while (fileOrStdOut != "C" && fileOrStdOut != "F")
             {
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("Enter 'c' to view output on console or");
-                Console.WriteLine("      'f' to write it into an output file.");
+                Console.WriteLine(AppConstants.OutputDataQuestion);
                 fileOrStdOut = Console.ReadLine().Trim().ToUpper(); 
             }
             if (fileOrStdOut == "C")
@@ -236,7 +224,7 @@ namespace Nasa.Mars.Rovers.Control
             {
                 var outputfilePath = string.Empty;
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("Type the path to the output file:");
+                Console.WriteLine(AppConstants.OutputFilePathQuestion);
                 while (string.IsNullOrEmpty(outputfilePath))
                 {
                     outputfilePath = Console.ReadLine().Trim();
@@ -245,13 +233,13 @@ namespace Nasa.Mars.Rovers.Control
                 {
                     File.WriteAllLines(outputfilePath, outputLines.ToArray());
                     Console.WriteLine(string.Empty);
-                    Console.WriteLine(string.Format("Output has been written into the file at {0}",
+                    Console.WriteLine(string.Format(AppConstants.OutputWrittenConfirmationFormat,
                         Path.GetFullPath(outputfilePath)));
 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("An error occured, while attmpting to write to the file specified\r\n" +
+                    Console.WriteLine(AppConstants.OutputWriteErrorPrefix +
                         ex.Message);
                     displayOnStdOut(outputLines);
                 }
@@ -261,7 +249,7 @@ namespace Nasa.Mars.Rovers.Control
         private static void displayOnStdOut(IEnumerable<string> outputLines)
         {
             Console.WriteLine(string.Empty);
-            Console.WriteLine("The output is:");
+            Console.WriteLine(AppConstants.OutputDisplayPrefix);
             foreach (var line in outputLines)
             {
                 Console.WriteLine(line);

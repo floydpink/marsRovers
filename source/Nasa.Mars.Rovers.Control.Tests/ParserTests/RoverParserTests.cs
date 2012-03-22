@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Nasa.Mars.Rovers.Model;
 using Nasa.Mars.Rovers.Control.Parsers;
+using Nasa.Mars.Rovers.Model;
+using NUnit.Framework;
 
 namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
 {

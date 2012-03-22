@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nasa.Mars.Rovers.Model.Interfaces;
 using Nasa.Mars.Rovers.Model;
+using Nasa.Mars.Rovers.Model.Interfaces;
 
 namespace Nasa.Mars.Rovers.Control.Parsers
 {

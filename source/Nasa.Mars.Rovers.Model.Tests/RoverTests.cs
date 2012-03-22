@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Nasa.Mars.Rovers.Model;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Nasa.Mars.Rovers.Model.Tests
 {
