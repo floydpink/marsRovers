@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Nasa.Mars.Rovers.Control.Helpers;
+using Nasa.Mars.Rovers.Control.Parsers;
 using Nasa.Mars.Rovers.Model;
 using Nasa.Mars.Rovers.Model.Interfaces;
 
@@ -53,7 +53,7 @@ namespace Nasa.Mars.Rovers.Control
             finally
             {
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("......");
+                Console.WriteLine("_______________________");
                 Console.WriteLine("Press return to exit...");
                 Console.ReadLine();
             }

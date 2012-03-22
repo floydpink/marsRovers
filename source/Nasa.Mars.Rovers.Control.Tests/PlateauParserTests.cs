@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Nasa.Mars.Rovers.Control.Helpers;
+using Nasa.Mars.Rovers.Control.Parsers;
 
 namespace Nasa.Mars.Rovers.Control.Tests
 {

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Nasa.Mars.Rovers.Model;
-using Nasa.Mars.Rovers.Control.Helpers;
+using Nasa.Mars.Rovers.Control.Parsers;
 using System.Collections.Generic;
 using System.Linq;
 

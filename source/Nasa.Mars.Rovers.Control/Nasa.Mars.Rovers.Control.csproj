@@ -78,9 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\CommandsParser.cs" />
-    <Compile Include="Helpers\PlateauParser.cs" />
-    <Compile Include="Helpers\RoverParser.cs" />
+    <Compile Include="Parsers\CommandsParser.cs" />
+    <Compile Include="Parsers\PlateauParser.cs" />
+    <Compile Include="Parsers\RoverParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

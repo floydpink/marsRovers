@@ -5,7 +5,7 @@ using System.Text;
 using Nasa.Mars.Rovers.Model.Interfaces;
 using Nasa.Mars.Rovers.Model;
 
-namespace Nasa.Mars.Rovers.Control.Helpers
+namespace Nasa.Mars.Rovers.Control.Parsers
 {
     public static class RoverParser
     {
