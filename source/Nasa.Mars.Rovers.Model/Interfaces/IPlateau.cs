@@ -4,5 +4,7 @@
     {
         int EastBoundary { get; }
         int NorthBoundary { get; }
+
+        bool IsRoverWithinLimits(IRover rover);
     }
 }

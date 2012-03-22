@@ -1,4 +1,5 @@
-﻿using Nasa.Mars.Rovers.Model.Interfaces;
+﻿using Nasa.Mars.Rovers.Model.Extensions;
+using Nasa.Mars.Rovers.Model.Interfaces;
 
 namespace Nasa.Mars.Rovers.Model
 {
@@ -21,6 +22,12 @@ namespace Nasa.Mars.Rovers.Model
         public int NorthBoundary
         {
             get { return _northBoundary; }
+        }
+
+
+        public bool IsRoverWithinLimits(IRover rover)
+        {
+            return rover.Easting.Between(0, _eastBoundary) && rover.Northing.Between(0, _northBoundary);
         }
     }
 }
