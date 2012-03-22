@@ -10,32 +10,32 @@ namespace Nasa.Mars.Rovers.Model.Tests.ExtensionTests
         [Test]
         public void should_convert_0_degree_to_0_radian()
         {
-            int degree = 0;
-            double expectedRadian = 0.0;
+            const int degree = 0;
+            const double expectedRadian = 0.0;
             Assert.AreEqual(expectedRadian, degree.ToRadian());
         }
         
         [Test]
         public void should_convert_90_degrees_to_half_pi_radians()
         {
-            int degree = 90;
-            double expectedRadian = Math.PI / 2;
+            const int degree = 90;
+            const double expectedRadian = Math.PI / 2;
             Assert.AreEqual(expectedRadian, degree.ToRadian());
         }
 
         [Test]
         public void should_convert_180_degree_to_pi_radians()
         {
-            int degree = 180;
-            double expectedRadian = Math.PI;
+            const int degree = 180;
+            const double expectedRadian = Math.PI;
             Assert.AreEqual(expectedRadian, degree.ToRadian());
         }
 
         [Test]
         public void should_convert_270_degree_to_one_and_half_pi_radians()
         {
-            int degree = 270;
-            double expectedRadian = 1.5 * Math.PI;
+            const int degree = 270;
+            const double expectedRadian = 1.5 * Math.PI;
             Assert.AreEqual(expectedRadian, degree.ToRadian());
         }
 

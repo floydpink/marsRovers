@@ -11,25 +11,25 @@ namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
         [Test]
         public void should_parse_direction_character_for_East()
         {
-            Assert.AreEqual(Direction.East, RoverParser.parseDirection("E"));
+            Assert.AreEqual(Direction.East, RoverParser.ParseDirection("E"));
         }
         
         [Test]
         public void should_parse_direction_character_for_North()
         {
-            Assert.AreEqual(Direction.North, RoverParser.parseDirection("N"));
+            Assert.AreEqual(Direction.North, RoverParser.ParseDirection("N"));
         }
         
         [Test]
         public void should_parse_direction_character_for_West()
         {
-            Assert.AreEqual(Direction.West, RoverParser.parseDirection("W"));
+            Assert.AreEqual(Direction.West, RoverParser.ParseDirection("W"));
         }
 
         [Test]
         public void should_parse_direction_character_for_South()
         {
-            Assert.AreEqual(Direction.South, RoverParser.parseDirection("S"));
+            Assert.AreEqual(Direction.South, RoverParser.ParseDirection("S"));
         }
 
         [Test, ExpectedException(typeof(FormatException),
@@ -37,7 +37,7 @@ namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
             "The heading character has to be 'N','E','W' or 'S' for the four cardinal directions.")]
         public void should_parse_direction_character_is_invalid()
         {
-            RoverParser.parseDirection("s");
+            RoverParser.ParseDirection("s");
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void should_fail_parsing_invalid_rover_position_coordinates_and_direction()
         {
-            var rover = RoverParser.Parse("A 3 E");
+            RoverParser.Parse("A 3 E");
         }
     }
 }

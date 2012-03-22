@@ -11,8 +11,8 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             try 
             {
                 var coordinates = plateauCoordinatesLine.Split(' ');
-                int eastBoundary = Convert.ToInt32(coordinates[0]);
-                int northBoundary = Convert.ToInt32(coordinates[1]);
+                var eastBoundary = Convert.ToInt32(coordinates[0]);
+                var northBoundary = Convert.ToInt32(coordinates[1]);
                 return new Plateau(eastBoundary, northBoundary);
             }
             catch (Exception ex)

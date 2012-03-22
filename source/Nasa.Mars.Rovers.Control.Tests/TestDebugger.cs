@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace Nasa.Mars.Rovers.Control.Tests
 {
-    class TestDebugger
+    static class TestDebugger
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
@@ -24,8 +24,8 @@ namespace Nasa.Mars.Rovers.Control.Tests
                  * nunit.util.dll
                  *                  * 
                  */
-                String NUnitPath = "nunit-console.exe";
-                AssemblyName asmName = AssemblyName.GetAssemblyName(NUnitPath);
+                const string nUnitPath = "nunit-console.exe";
+                var asmName = AssemblyName.GetAssemblyName(nUnitPath);
                 AppDomain.CurrentDomain.ExecuteAssemblyByName(asmName, new[] { Assembly.GetExecutingAssembly().Location, 
                     "/framework:4.0" });
             }

@@ -42,13 +42,13 @@ namespace Nasa.Mars.Rovers.Model
             }
             else
             {
-                _heading = Convert.ToInt32(_heading + calculateTurn(command)).ToDirection();
+                _heading = Convert.ToInt32(_heading + CalculateTurn(command)).ToDirection();
             }
         }
 
-        internal static int calculateTurn(Command command)
+        internal static int CalculateTurn(Command command)
         {
-            int turnmount = AppConstants.TurnInDegrees;
+            var turnmount = AppConstants.TurnInDegrees;
             switch (command)
             {
                 case Command.Left:

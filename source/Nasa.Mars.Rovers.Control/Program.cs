@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Nasa.Mars.Rovers.Control.Parsers;
@@ -8,87 +9,88 @@ using Nasa.Mars.Rovers.Model.Interfaces;
 
 namespace Nasa.Mars.Rovers.Control
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
                 Console.Title = AppConstants.ProgramTitle;
-                writeLineToConsole(AppConstants.ProgramTitle);
-                writeLineToConsole(AppConstants.ProgramTitleUnderline);
+                WriteLineToConsole(AppConstants.ProgramTitle);
+                WriteLineToConsole(AppConstants.ProgramTitleUnderline);
 
-                string fileOrStdIn = string.Empty;
-                while (userInputNotValid(fileOrStdIn))
+                var fileOrStdIn = string.Empty;
+                while (UserInputNotValid(fileOrStdIn))
                 {
-                    writeLineToConsole(AppConstants.InputDataQuestion, true);
+                    WriteLineToConsole(AppConstants.InputDataQuestion, true);
                     fileOrStdIn = Console.ReadLine().Trim();
                 }
                 if (fileOrStdIn.ToUpper() != "E")
                 {
-                    List<string> inputData = captureTestData(fileOrStdIn);
+                    var inputData = CaptureTestData(fileOrStdIn);
 
                     if (inputData.Count != 0)
                     {
-                        writeLineToConsole(AppConstants.InputCapturedPrefix, true);
+                        WriteLineToConsole(AppConstants.InputCapturedPrefix, true);
                         Console.WriteLine(string.Empty);
                         foreach (var data in inputData)
                         {
-                            writeLineToConsole(data);
+                            WriteLineToConsole(data);
                         }
-                        var outputLines = processInputAndBuildOutput(inputData);
-                        printOutputData(outputLines);
+                        var outputLines = ProcessInputAndBuildOutput(inputData);
+                        PrintOutputData(outputLines);
                     }
                     else
                     {
-                        writeLineToConsole(AppConstants.GoodBye, true);
+                        WriteLineToConsole(AppConstants.GoodBye, true);
                     }
                 }
             }
             catch (Exception ex)
             {
-                writeLineToConsole(AppConstants.ErrorPrefix, true);
-                writeLineToConsole(ex.Message);
+                WriteLineToConsole(AppConstants.ErrorPrefix, true);
+                WriteLineToConsole(ex.Message);
             }
             finally
             {
-                writeLineToConsole(AppConstants.ExitMessageOverline, true);
-                writeLineToConsole(AppConstants.ExitMessage);
+                WriteLineToConsole(AppConstants.ExitMessageOverline, true);
+                WriteLineToConsole(AppConstants.ExitMessage);
                 Console.ReadLine();
             }
         }
 
-        internal static bool userInputNotValid(string fileOrStdIn)
+        internal static bool UserInputNotValid(string fileOrStdIn)
         {
             return fileOrStdIn.ToUpper() != "M" && fileOrStdIn.ToUpper() != "F" && fileOrStdIn.ToUpper() != "E";
         }
 
-        private static List<string> captureTestData(string fileOrStdIn)
+        private static List<string> CaptureTestData(string fileOrStdIn)
         {
-            List<string> inputData = new List<string>();
-            if (fileOrStdIn.ToUpper() == "M")
+            var inputData = new List<string>();
+            switch (fileOrStdIn.ToUpper())
             {
-                inputData = getInputFromStdIn();
-            }
-            else if (fileOrStdIn.ToUpper() == "F")
-            {
-                inputData = getInputFromFile();
+                case "M":
+                    inputData = GetInputFromStdIn();
+                    break;
+                case "F":
+                    inputData = GetInputFromFile();
+                    break;
             }
             return inputData;
         }
 
-        private static void printTestDataFormat()
+        private static void PrintTestDataFormat()
         {
-            writeLineToConsole(AppConstants.TestDataInputFormat, true);
+            WriteLineToConsole(AppConstants.TestDataInputFormat, true);
         }
 
-        private static List<string> getInputFromFile()
+        private static List<string> GetInputFromFile()
         {
-            List<string> fileInputData = new List<string>();
-            writeLineToConsole(AppConstants.InputDataFilePathQuestion, true);
-            printTestDataFormat();
+            var fileInputData = new List<string>();
+            WriteLineToConsole(AppConstants.InputDataFilePathQuestion, true);
+            PrintTestDataFormat();
 
-            bool validInputFile = false;
+            var validInputFile = false;
             while (!validInputFile)
             {
                 var inputFilePath = Console.ReadLine().Trim();
@@ -103,22 +105,22 @@ namespace Nasa.Mars.Rovers.Control
                 }
                 else
                 {
-                    writeLineToConsole(string.Format(AppConstants.InputDataFilePathQuestionRepeatFormat, inputFilePath), true);
+                    WriteLineToConsole(string.Format(AppConstants.InputDataFilePathQuestionRepeatFormat, inputFilePath), true);
                 }
             }
 
             return fileInputData;
         }
 
-        private static List<string> getInputFromStdIn()
+        private static List<string> GetInputFromStdIn()
         {
-            List<string> stdInData = new List<string>();
-            Console.WriteLine(AppConstants.ManualTestDataInputQuestion, true);
-            printTestDataFormat();
-            writeLineToConsole(AppConstants.EmptyLineInFormatForManualInput);
+            var stdInData = new List<string>();
+            WriteLineToConsole(AppConstants.ManualTestDataInputQuestion, true);
+            PrintTestDataFormat();
+            WriteLineToConsole(AppConstants.EmptyLineInFormatForManualInput);
             Console.WriteLine(string.Empty);
 
-            bool endOfTestData = false;
+            var endOfTestData = false;
             while (!endOfTestData)
             {
                 var inputLine = Console.ReadLine().Trim().ToUpper();
@@ -135,7 +137,7 @@ namespace Nasa.Mars.Rovers.Control
             return stdInData;
         }
 
-        private static IEnumerable<string> processInputAndBuildOutput(List<string> inputData)
+        private static IEnumerable<string> ProcessInputAndBuildOutput(List<string> inputData)
         {
             var plateauCoordinatesLine = inputData[0];
             inputData.RemoveAt(0);
@@ -151,7 +153,7 @@ namespace Nasa.Mars.Rovers.Control
             while (inputData.Count > 0)
             {
                 var roverData = new List<string>();
-                for (int i = 0; i < 2; i++)
+                for (var i = 0; i < 2; i++)
                 {
                     roverData.Add(inputData[0]);
                     inputData.RemoveAt(0);
@@ -159,12 +161,12 @@ namespace Nasa.Mars.Rovers.Control
                 roversAndInstructions.Add(RoverParser.Parse(roverData[0]), CommandsParser.Parse(roverData[1]));
             }
 
-            var roversAfterNavigation = executeNavigationCommands(roversAndInstructions);
+            var roversAfterNavigation = ExecuteNavigationCommands(roversAndInstructions);
 
-            return getOutputLines(plateau, roversAfterNavigation);
+            return GetOutputLines(plateau, roversAfterNavigation);
         }
 
-        internal static List<IRover> executeNavigationCommands(Dictionary<IRover,
+        internal static List<IRover> ExecuteNavigationCommands(Dictionary<IRover,
             IEnumerable<Command>> roversAndInstructions)
         {
             var rovers = new List<IRover>();
@@ -180,14 +182,16 @@ namespace Nasa.Mars.Rovers.Control
             return rovers;
         }
 
-        internal static IEnumerable<string> getOutputLines(IPlateau plateau, List<IRover> rovers)
+        internal static IEnumerable<string> GetOutputLines(IPlateau plateau, IEnumerable<IRover> rovers)
         {
             var output = new List<string>();
             foreach (var rover in rovers)
             {
                 if (plateau.IsRoverWithinLimits(rover))
                 {
-                    output.Add(string.Format("{0} {1} {2}", rover.Easting.ToString(), rover.Northing.ToString(),
+                    output.Add(string.Format("{0} {1} {2}", 
+                        rover.Easting.ToString(CultureInfo.InvariantCulture), 
+                        rover.Northing.ToString(CultureInfo.InvariantCulture),
                         rover.Heading.ToString().Substring(0, 1)));
                 }
                 else
@@ -198,23 +202,23 @@ namespace Nasa.Mars.Rovers.Control
             return output;
         }
 
-        private static void printOutputData(IEnumerable<string> outputLines)
+        private static void PrintOutputData(IEnumerable<string> outputLines)
         {
             var fileOrStdOut = string.Empty;
-            writeLineToConsole(AppConstants.DoneProcessing, true);
+            WriteLineToConsole(AppConstants.DoneProcessing, true);
             while (fileOrStdOut != "C" && fileOrStdOut != "F")
             {
-                writeLineToConsole(AppConstants.OutputDataQuestion, true);
+                WriteLineToConsole(AppConstants.OutputDataQuestion, true);
                 fileOrStdOut = Console.ReadLine().Trim().ToUpper();
             }
             if (fileOrStdOut == "C")
             {
-                displayOnStdOut(outputLines);
+                DisplayOnStdOut(outputLines);
             }
             else
             {
                 var outputfilePath = string.Empty;
-                writeLineToConsole(AppConstants.OutputFilePathQuestion, true);
+                WriteLineToConsole(AppConstants.OutputFilePathQuestion, true);
                 while (string.IsNullOrEmpty(outputfilePath))
                 {
                     outputfilePath = Console.ReadLine().Trim();
@@ -222,28 +226,28 @@ namespace Nasa.Mars.Rovers.Control
                 try
                 {
                     File.WriteAllLines(outputfilePath, outputLines.ToArray());
-                    writeLineToConsole(string.Format(AppConstants.OutputWrittenConfirmationFormat,
+                    WriteLineToConsole(string.Format(AppConstants.OutputWrittenConfirmationFormat,
                         Path.GetFullPath(outputfilePath)), true);
 
                 }
                 catch (Exception ex)
                 {
-                    writeLineToConsole(AppConstants.OutputWriteErrorPrefix + ex.Message);
-                    displayOnStdOut(outputLines);
+                    WriteLineToConsole(AppConstants.OutputWriteErrorPrefix + ex.Message);
+                    DisplayOnStdOut(outputLines);
                 }
             }
         }
 
-        private static void displayOnStdOut(IEnumerable<string> outputLines)
+        private static void DisplayOnStdOut(IEnumerable<string> outputLines)
         {
-            writeLineToConsole(AppConstants.OutputDisplayPrefix, true);
+            WriteLineToConsole(AppConstants.OutputDisplayPrefix, true);
             foreach (var line in outputLines)
             {
-                writeLineToConsole(line);
+                WriteLineToConsole(line);
             }
         }
 
-        private static void writeLineToConsole(string message, bool afterAnEmptyLine = false)
+        private static void WriteLineToConsole(string message, bool afterAnEmptyLine = false)
         {
             if (afterAnEmptyLine)
             {

@@ -11,9 +11,9 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             try
             {
                 var roverPositionAndHeading = roverPositionAndHeadingLine.Split(' ');
-                int easting = Convert.ToInt32(roverPositionAndHeading[0]);
-                int northing = Convert.ToInt32(roverPositionAndHeading[1]);
-                Direction heading = parseDirection(roverPositionAndHeading[2]);
+                var easting = Convert.ToInt32(roverPositionAndHeading[0]);
+                var northing = Convert.ToInt32(roverPositionAndHeading[1]);
+                var heading = ParseDirection(roverPositionAndHeading[2]);
 
                 return new Rover(easting, northing, heading);
             }
@@ -24,7 +24,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             }
         }
 
-        internal static Direction parseDirection(string direction)
+        internal static Direction ParseDirection(string direction)
         {
             switch (direction.Trim())
             {
@@ -38,7 +38,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
                     return Direction.South;
                 default:
                     throw new FormatException(AppConstants.RoverParserParseDirectionError);
-            };
+            }
         }
     }
 }

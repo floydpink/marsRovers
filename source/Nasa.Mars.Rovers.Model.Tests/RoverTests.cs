@@ -128,25 +128,25 @@ namespace Nasa.Mars.Rovers.Model.Tests
         [Test]
         public void should_calculate_turn_angle_in_degrees_for_left_turn()
         {
-            Assert.AreEqual(90, Rover.calculateTurn(Command.Left));
+            Assert.AreEqual(90, Rover.CalculateTurn(Command.Left));
         }
 
         [Test]
         public void should_calculate_turn_angle_in_degrees_for_right_turn()
         {
-            Assert.AreEqual(-90, Rover.calculateTurn(Command.Right));
+            Assert.AreEqual(-90, Rover.CalculateTurn(Command.Right));
         }
 
         [Test]
         public void should_calculate_turn_angle_in_degrees_for_move_ahead()
         {
-            Assert.AreEqual(0, Rover.calculateTurn(Command.Move));
+            Assert.AreEqual(0, Rover.CalculateTurn(Command.Move));
         }
 
         [Test]
         public void should_calculate_turn_angle_in_degrees_for_erroneous_command()
         {
-            Assert.AreEqual(0, Rover.calculateTurn(Command.Error));
+            Assert.AreEqual(0, Rover.CalculateTurn(Command.Error));
         }
     }
 }

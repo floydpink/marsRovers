@@ -8,7 +8,7 @@
     <ProjectGuid>{79F8ADE5-E142-48DC-9EC8-40A2BC2C9904}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nasa.Mars.Rovers.Control.Tests.ParserTests</RootNamespace>
+    <RootNamespace>Nasa.Mars.Rovers.Control.Tests</RootNamespace>
     <AssemblyName>Nasa.Mars.Rovers.Control.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,11 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ParserTests\CommandsParserTests.cs" />

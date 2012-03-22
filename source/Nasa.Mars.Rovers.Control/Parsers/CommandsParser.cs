@@ -11,7 +11,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             var commandsList = new List<Command>();
             foreach (var commandCharacter in commands)
             {
-                Command command = Command.Error;
+                Command command;
                 switch (commandCharacter)
                 {
                     case 'L':

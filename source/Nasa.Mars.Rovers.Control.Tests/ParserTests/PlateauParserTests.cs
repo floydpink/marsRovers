@@ -21,7 +21,7 @@ namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
             "The expected format is 'x y', where x and y are integers, delimited by single space.")]
         public void should_fail_when_input_is_invalid_with_only_one_integer()
         {
-            var plateau = PlateauParser.Parse("5");
+            PlateauParser.Parse("5");
         }
 
         [Test, ExpectedException(typeof(FormatException),
@@ -29,7 +29,7 @@ namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
             "The expected format is 'x y', where x and y are integers, delimited by single space.")]
         public void should_fail_when_input_is_invalid()
         {
-            var plateau = PlateauParser.Parse("a 5");
+            PlateauParser.Parse("a 5");
         }
     }
 }
