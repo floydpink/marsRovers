@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\CommandMapper.cs" />
+    <Compile Include="Helpers\PlateauParser.cs" />
+    <Compile Include="Helpers\RoverPositionHeadingMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

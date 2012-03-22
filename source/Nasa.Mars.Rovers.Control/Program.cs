@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Nasa.Mars.Rovers.Control.Helpers;
 
 namespace Nasa.Mars.Rovers.Control
 {
@@ -33,19 +34,36 @@ namespace Nasa.Mars.Rovers.Control
                         {
                             Console.WriteLine(data);
                         }
+                        processInputDataAndDisplayOutput(inputData);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nothing to do here. Good bye!");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(string.Empty);
+                Console.WriteLine("An error has occured...");
+                Console.WriteLine(ex.Message);
             }
             finally
             {
                 Console.WriteLine(string.Empty);
-                Console.WriteLine("Done. Hit return to exit...");
+                Console.WriteLine("......");
+                Console.WriteLine("Press return to exit...");
                 Console.ReadLine();
             }
+        }
+
+        private static void processInputDataAndDisplayOutput(List<string> inputData)
+        {
+            var plateauCoordinatesLine = inputData[0];
+            inputData.RemoveAt(0);
+
+            var plateau = PlateauParser.Parse(plateauCoordinatesLine);
+            
         }
 
         internal static List<string> captureTestData(string fileOrStdIn)
@@ -97,6 +115,7 @@ namespace Nasa.Mars.Rovers.Control
             List<string> stdInData = new List<string>();
             Console.WriteLine("Type in the test data in the below format:");
             printTestDataFormat();
+            Console.WriteLine("\t\t// empty line marking the end of test data input");
 
             bool endOfTestData = false;
             while (!endOfTestData)
@@ -128,7 +147,6 @@ namespace Nasa.Mars.Rovers.Control
             Console.WriteLine("...");
             Console.WriteLine("p q 'h'\t\t// rover #n position and heading");
             Console.WriteLine("'c''c'...'c'\t// rover #n navigation commands");
-            Console.WriteLine("\t\t// empty line marking the end of test data input");
         }
 
         internal static bool userInputNotValid(string fileOrStdIn)
