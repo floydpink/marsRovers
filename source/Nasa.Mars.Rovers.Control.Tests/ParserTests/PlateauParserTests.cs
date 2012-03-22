@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using Nasa.Mars.Rovers.Control.Parsers;
 
-namespace Nasa.Mars.Rovers.Control.Tests
+namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
 {
     [TestFixture]
     public class PlateauParserTests

@@ -4,7 +4,7 @@ using Nasa.Mars.Rovers.Control.Parsers;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nasa.Mars.Rovers.Control.Tests
+namespace Nasa.Mars.Rovers.Control.Tests.ParserTests
 {
     [TestFixture]
     class CommandsParserTests
