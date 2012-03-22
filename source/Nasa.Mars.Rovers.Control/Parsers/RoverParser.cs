@@ -19,7 +19,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("...while processing the Rovers data.\r\n" +
+                throw new InvalidOperationException(AppConstants.RoverParserErrorPrefix +
                     ex.Message, ex);
             }
         }
@@ -37,8 +37,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
                 case "S":
                     return Direction.South;
                 default:
-                    throw new FormatException("...while parsing the rover heading character.\r\n" +
-                        "The heading character has to be 'N','E','W' or 'S' for the four cardinal directions.");
+                    throw new FormatException(AppConstants.RoverParserParseDirectionError);
             };
         }
     }

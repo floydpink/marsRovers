@@ -17,9 +17,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
             }
             catch (Exception ex)
             {
-                string message = "... while parsing the plateau coordinates.\r\n"  + 
-                "The expected format is 'x y', where x and y are integers, delimited by single space.";
-                throw new FormatException(message, ex);
+                throw new FormatException(AppConstants.PlateauParserError, ex);
             }
         }
     }

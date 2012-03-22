@@ -24,7 +24,7 @@ namespace Nasa.Mars.Rovers.Control.Parsers
                         command = Command.Move;
                         break;
                     default:
-                        throw new InvalidOperationException("Invalid character found in commands. Valid values are 'L', 'R' or 'M'.");
+                        throw new InvalidOperationException(AppConstants.CommandParserError);
                 }
                 commandsList.Add(command);
             }

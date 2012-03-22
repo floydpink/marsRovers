@@ -44,5 +44,16 @@
         public static readonly string OutputWrittenConfirmationFormat = "Output has been written into the file at {0}";
         public static readonly string OutputWriteErrorPrefix = "An error occured, while attmpting to write to the file specified\r\n";
         public static readonly string OutputDisplayPrefix = "The output is:";
+
+        public static readonly string RoverParserErrorPrefix = "...while processing the Rovers data.\r\n";
+        public static readonly string RoverParserParseDirectionError = 
+            "...while parsing the rover heading character.\r\n" +
+            "The heading character has to be 'N','E','W' or 'S' for the four cardinal directions.";
+
+        public static readonly string PlateauParserError = "... while parsing the plateau coordinates.\r\n" + 
+            "The expected format is 'x y', where x and y are integers, delimited by single space.";
+
+        public static readonly string CommandParserError = 
+            "Invalid character found in commands. Valid values are 'L', 'R' or 'M'.";
     }
 }
