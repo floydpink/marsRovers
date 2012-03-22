@@ -5,7 +5,7 @@
 
 	<!-- Compilation settings -->
 	<property name="marsRovers.solution" value="Nasa.Mars.Rovers.sln"/>
-	<property name="project.config" value="release"/>
+	<property name="build.config" value="release"/>
 	
 	<!-- Folder references -->
 	<property name="working.dir" value="${path::get-full-path('.')}"/>
@@ -18,17 +18,29 @@
 	<property name="nunit.dir" value="${tools.dir}NUnit-2.6.0.12051\bin" dynamic="true" />	
 	<property name="control.unittests.assembly" value="${build.results.dir}bin\Nasa.Mars.Rovers.Control.Tests.dll" />
 	<property name="model.unittests.assembly" value="${build.results.dir}bin\Nasa.Mars.Rovers.Model.Tests.dll" />
+	
+	<!-- Load NAnt Contrib Tasks -->
+	<loadtasks assembly="${tools.dir}nantcontrib-0.91\bin\NAnt.Contrib.Tasks.dll" />
 
 	<!-- Build Targets -->
 	<target name="localbuild" depends="compilesolution, controlTests, modelTests"/>
 
+	<!--
 	<target name="compilesolution">
 		<echo message="Compiling Solution:" />
 
 		<exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319"
-			  commandline='"${source.directory}${marsRovers.solution}" /t:Rebuild /p:Configuration=${project.config} /v:m /m' workingdir="." />
+			  commandline='"${source.directory}${marsRovers.solution}" /t:Rebuild /v:m /m' workingdir="." />
 	</target>
+	-->
 
+	<target name="compilesolution">
+	  <msbuild project="${source.directory}${marsRovers.solution}">
+		<property name="Configuration"
+				  value="${build.config}" />
+	  </msbuild>
+	</target>
+	
 	<target name="controlTests">
 		<echo message="Running Nasa.Mars.Rovers.Control.Tests..." />
 		<property name="nunittest.testassemblypath" value="${control.unittests.assembly}" dynamic="true" />
