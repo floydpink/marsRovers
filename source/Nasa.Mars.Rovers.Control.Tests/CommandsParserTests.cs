@@ -14,12 +14,12 @@ namespace Nasa.Mars.Rovers.Control.Tests
         {
             string commands = "LRMMRL";
             IEnumerable<Command> expectedCommands = new List<Command> { Command.Left, Command.Right, Command.Move, Command.Move, Command.Right, Command.Left };
-            Assert.IsNotNull(CommandsParser.Map(commands));
-            CollectionAssert.IsNotEmpty(CommandsParser.Map(commands));
-            CollectionAssert.AllItemsAreInstancesOfType(CommandsParser.Map(commands), typeof(Command));
-            CollectionAssert.DoesNotContain(CommandsParser.Map(commands), Command.Error);
-            Assert.AreEqual(commands.Length, CommandsParser.Map(commands).Count());
-            Assert.AreEqual(expectedCommands, CommandsParser.Map(commands));
+            Assert.IsNotNull(CommandsParser.Parse(commands));
+            CollectionAssert.IsNotEmpty(CommandsParser.Parse(commands));
+            CollectionAssert.AllItemsAreInstancesOfType(CommandsParser.Parse(commands), typeof(Command));
+            CollectionAssert.DoesNotContain(CommandsParser.Parse(commands), Command.Error);
+            Assert.AreEqual(commands.Length, CommandsParser.Parse(commands).Count());
+            Assert.AreEqual(expectedCommands, CommandsParser.Parse(commands));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Nasa.Mars.Rovers.Control.Tests
         {
             string commands = "LRMABC";
             Assert.Throws(typeof(System.InvalidOperationException), 
-                () => CommandsParser.Map(commands), 
+                () => CommandsParser.Parse(commands), 
                 "Invalid character found in commands. Valid values are 'L', 'R' or 'M'.");
         }
     }

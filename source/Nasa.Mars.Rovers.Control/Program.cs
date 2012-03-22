@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nasa.Mars.Rovers.Control.Helpers;
+using Nasa.Mars.Rovers.Model;
+using Nasa.Mars.Rovers.Model.Interfaces;
 
 namespace Nasa.Mars.Rovers.Control
 {
@@ -61,9 +63,27 @@ namespace Nasa.Mars.Rovers.Control
         {
             var plateauCoordinatesLine = inputData[0];
             inputData.RemoveAt(0);
-
             var plateau = PlateauParser.Parse(plateauCoordinatesLine);
-            
+
+            if (inputData.Count % 2 == 1)
+            {
+                throw new InvalidDataException("...while processing the Rovers data.\r\n" + 
+                    "Each rover needs two lines of data as detailed above.");
+            }
+
+            var roversAndInstructions = new Dictionary<IRover,IEnumerable<Command>>();
+
+            while (inputData.Count > 0)
+            {
+                var roverData = new List<string>();
+                for (int i = 0; i < 2; i++)
+                {
+                    roverData.Add(inputData[0]);
+                    inputData.RemoveAt(0);                    
+                }
+                roversAndInstructions.Add(RoverParser.Parse(roverData[0]),CommandsParser.Parse(roverData[1]));
+            }
+
         }
 
         internal static List<string> captureTestData(string fileOrStdIn)

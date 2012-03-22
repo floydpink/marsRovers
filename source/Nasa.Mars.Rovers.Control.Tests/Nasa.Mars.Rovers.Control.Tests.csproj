@@ -51,6 +51,7 @@
     <Compile Include="ControlConsoleTests.cs" />
     <Compile Include="PlateauParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoverParserTests.cs" />
     <Compile Include="TestDebugger.cs" />
   </ItemGroup>
   <ItemGroup>

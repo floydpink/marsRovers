@@ -8,7 +8,7 @@ namespace Nasa.Mars.Rovers.Control.Helpers
 {
     public static class CommandsParser
     {
-        public static IEnumerable<Command> Map(string commands)
+        public static IEnumerable<Command> Parse(string commands)
         {
             var commandsList = new List<Command>();
             foreach (var commandCharacter in commands)

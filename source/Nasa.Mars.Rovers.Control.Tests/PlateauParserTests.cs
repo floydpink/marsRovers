@@ -18,6 +18,15 @@ namespace Nasa.Mars.Rovers.Control.Tests
             Assert.AreEqual(5, plateau.EastBoundary);
             Assert.AreEqual(5, plateau.NorthBoundary);
         }
+
+        [Test, ExpectedException(typeof(FormatException),
+            ExpectedMessage = "... while parsing the plateau coordinates.\r\n" +
+            "The expected format is 'x y', where x and y are integers, delimited by single space.")]
+        public void should_fail_when_input_is_invalid_with_only_one_integer()
+        {
+            var plateau = PlateauParser.Parse("5");
+        }
+
         [Test, ExpectedException(typeof(FormatException),
             ExpectedMessage = "... while parsing the plateau coordinates.\r\n" + 
             "The expected format is 'x y', where x and y are integers, delimited by single space.")]
