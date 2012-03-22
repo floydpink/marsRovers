@@ -15,12 +15,14 @@ namespace Nasa.Mars.Rovers.Control
         {
             try
             {
+                Console.WriteLine(AppConstants.ProgramTitle);
+                Console.WriteLine(AppConstants.ProgramTitleUnderline);
+
                 string fileOrStdIn = string.Empty;
                 while (userInputNotValid(fileOrStdIn))
                 {
-                    Console.WriteLine("Enter 'm' to mnualy type in the test data and ");
-                    Console.WriteLine("      'f' to enter the path to input file.");
-                    Console.WriteLine("Or enter 'e' to exit and hit return:");
+                    Console.WriteLine(string.Empty);
+                    Console.WriteLine(AppConstants.InputDataQuestion);
                     fileOrStdIn = Console.ReadLine().Trim();
                 }
                 if (fileOrStdIn.ToUpper() != "E")
@@ -30,16 +32,19 @@ namespace Nasa.Mars.Rovers.Control
 
                     if (inputData.Count != 0)
                     {
+                        Console.WriteLine(string.Empty);
                         Console.WriteLine("The input captured is:");
                         Console.WriteLine(string.Empty);
                         foreach (var data in inputData)
                         {
                             Console.WriteLine(data);
                         }
-                        processInputDataAndDisplayOutput(inputData);
+                        var outputLines = processInputAndBuildOutput(inputData);
+                        printOutputData(outputLines);
                     }
                     else
                     {
+                        Console.WriteLine(string.Empty);
                         Console.WriteLine("Nothing to do here. Good bye!");
                     }
                 }
@@ -67,8 +72,6 @@ namespace Nasa.Mars.Rovers.Control
         private static List<string> captureTestData(string fileOrStdIn)
         {
             List<string> inputData = new List<string>();
-            Console.WriteLine(string.Empty);
-            Console.WriteLine(string.Format("You entered {0}", fileOrStdIn));
             if (fileOrStdIn.ToUpper() == "M")
             {
                 inputData = getInputFromStdIn();
@@ -126,9 +129,11 @@ namespace Nasa.Mars.Rovers.Control
         private static List<string> getInputFromStdIn()
         {
             List<string> stdInData = new List<string>();
+            Console.WriteLine(string.Empty);
             Console.WriteLine("Type in the test data in the below format:");
             printTestDataFormat();
             Console.WriteLine("\t\t// empty line marking the end of test data input");
+            Console.WriteLine(string.Empty);
 
             bool endOfTestData = false;
             while (!endOfTestData)
@@ -147,9 +152,8 @@ namespace Nasa.Mars.Rovers.Control
             return stdInData;
         }
 
-        private static void processInputDataAndDisplayOutput(List<string> inputData)
+        private static IEnumerable<string> processInputAndBuildOutput(List<string> inputData)
         {
-            //TODO: untested method - refactor into something like MVP if there is time
             var plateauCoordinatesLine = inputData[0];
             inputData.RemoveAt(0);
             var plateau = PlateauParser.Parse(plateauCoordinatesLine);
@@ -175,7 +179,7 @@ namespace Nasa.Mars.Rovers.Control
 
             var roversAfterNavigation = executeNavigationCommands(roversAndInstructions);
 
-            var ouput = getOutputLines(plateau, roversAfterNavigation);
+            return getOutputLines(plateau, roversAfterNavigation);
         }
 
         internal static List<IRover> executeNavigationCommands(Dictionary<IRover,
@@ -210,6 +214,58 @@ namespace Nasa.Mars.Rovers.Control
                 }
             }
             return output;
+        }
+
+        private static void printOutputData(IEnumerable<string> outputLines)
+        {
+            var fileOrStdOut = string.Empty;
+            Console.WriteLine(string.Empty);
+            Console.WriteLine("Done processing the input!");
+            while (fileOrStdOut != "C" && fileOrStdOut != "F")
+            {
+                Console.WriteLine(string.Empty);
+                Console.WriteLine("Enter 'c' to view output on console or");
+                Console.WriteLine("      'f' to write it into an output file.");
+                fileOrStdOut = Console.ReadLine().Trim().ToUpper(); 
+            }
+            if (fileOrStdOut == "C")
+            {
+                displayOnStdOut(outputLines);
+            }
+            else
+            {
+                var outputfilePath = string.Empty;
+                Console.WriteLine(string.Empty);
+                Console.WriteLine("Type the path to the output file:");
+                while (string.IsNullOrEmpty(outputfilePath))
+                {
+                    outputfilePath = Console.ReadLine().Trim();
+                }
+                try
+                {
+                    File.WriteAllLines(outputfilePath, outputLines.ToArray());
+                    Console.WriteLine(string.Empty);
+                    Console.WriteLine(string.Format("Output has been written into the file at {0}",
+                        Path.GetFullPath(outputfilePath)));
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occured, while attmpting to write to the file specified\r\n" +
+                        ex.Message);
+                    displayOnStdOut(outputLines);
+                }
+            }
+        }
+
+        private static void displayOnStdOut(IEnumerable<string> outputLines)
+        {
+            Console.WriteLine(string.Empty);
+            Console.WriteLine("The output is:");
+            foreach (var line in outputLines)
+            {
+                Console.WriteLine(line);
+            }
         }
 
     }
