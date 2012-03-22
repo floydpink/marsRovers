@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandMapperTests.cs" />
+    <Compile Include="ControlConsoleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDebugger.cs" />
   </ItemGroup>
