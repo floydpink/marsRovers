@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="MarsRovers" default="localbuild">
+
+	<property name="project.name" value="MarsRovers" />
+
+	<!-- Compilation settings -->
+	<property name="marsRovers.solution" value="Nasa.Mars.Rovers.sln"/>
+	<property name="project.config" value="release"/>
+	
+	<!-- Folder references -->
+	<property name="working.dir" value="${path::get-full-path('.')}"/>
+	<property name="tools.dir" value="${working.dir}\tools\" />
+	<property name="source.directory" value="${working.dir}\source\" />
+	<property name="build.results.dir" value="${working.dir}\Results\" />
+	<property name="build.results.dir.bin" value="${build.results.dir}bin" />
+
+	<!-- Test references -->
+	<property name="nunit.dir" value="${tools.dir}NUnit-2.6.0.12051\bin" dynamic="true" />	
+	<property name="control.unittests.assembly" value="${build.results.dir}bin\Nasa.Mars.Rovers.Control.Tests.dll" />
+	<property name="model.unittests.assembly" value="${build.results.dir}bin\Nasa.Mars.Rovers.Model.Tests.dll" />
+
+	<!-- Build Targets -->
+	<target name="localbuild" depends="compilesolution, controlTests, modelTests"/>
+
+	<target name="compilesolution">
+		<echo message="Compiling Solution:" />
+
+		<exec program="msbuild.exe"  basedir="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319"
+			  commandline='"${source.directory}${marsRovers.solution}" /t:Rebuild /p:Configuration=${project.config} /v:m /m' workingdir="." />
+	</target>
+
+	<target name="controlTests">
+		<echo message="Running Nasa.Mars.Rovers.Control.Tests..." />
+		<property name="nunittest.testassemblypath" value="${control.unittests.assembly}" dynamic="true" />
+		<call target="nunittest" />
+	</target>
+	
+	<target name="modelTests">
+		<echo message="Running Nasa.Mars.Rovers.Model.Tests..." />
+		<property name="nunittest.testassemblypath" value="${model.unittests.assembly}" dynamic="true" />
+		<call target="nunittest" />		
+	</target>
+
+	<target name="nunittest">
+		<property name="nunittest.output.file.name" value="${path::get-file-name-without-extension(nunittest.testassemblypath)}.xml"/>
+		<exec program="${nunit.dir}\nunit-console.exe">
+			<arg value="&quot;${nunittest.testassemblypath}&quot; /xml=&quot;${build.results.dir}NUnit\${nunittest.output.file.name}&quot;"/>
+		</exec>		
+	</target>
+
+</project>
