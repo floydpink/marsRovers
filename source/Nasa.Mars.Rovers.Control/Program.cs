@@ -187,17 +187,11 @@ namespace Nasa.Mars.Rovers.Control
             var output = new List<string>();
             foreach (var rover in rovers)
             {
-                if (plateau.IsRoverWithinLimits(rover))
-                {
-                    output.Add(string.Format("{0} {1} {2}", 
-                        rover.Easting.ToString(CultureInfo.InvariantCulture), 
-                        rover.Northing.ToString(CultureInfo.InvariantCulture),
-                        rover.Heading.ToString().Substring(0, 1)));
-                }
-                else
-                {
-                    output.Add(AppConstants.RoverBeyondLimits);
-                }
+                output.Add(string.Format("{0} {1} {2}{3}",
+                    rover.Easting.ToString(CultureInfo.InvariantCulture),
+                    rover.Northing.ToString(CultureInfo.InvariantCulture),
+                    rover.Heading.ToString().Substring(0, 1),
+                    plateau.IsRoverWithinLimits(rover) ? string.Empty : AppConstants.BeyondLimits));
             }
             return output;
         }

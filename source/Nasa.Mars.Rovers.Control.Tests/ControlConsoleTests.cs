@@ -64,7 +64,7 @@ namespace Nasa.Mars.Rovers.Control.Tests
             Assert.AreEqual("5 1 S", output[1]);
             Assert.AreEqual("2 2 E", output[2]);
             Assert.AreEqual("1 3 W", output[3]);
-            Assert.AreEqual(AppConstants.RoverBeyondLimits, output[4]);
+            Assert.AreEqual(string.Format("7 2 W{0}", AppConstants.BeyondLimits), output[4]);
         }
     }
 }

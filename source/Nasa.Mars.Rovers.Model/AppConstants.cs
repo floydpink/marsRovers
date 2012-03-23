@@ -5,7 +5,7 @@
         public const int TurnInDegrees = 90;
 
         //string literals
-        public const string RoverBeyondLimits = "Rover Beyond Plateau Boundaries.";
+        public const string BeyondLimits = " (Beyond Boundaries.)";
 
         public const string ProgramTitle = "The NASA Mars Rovers Program";
         public const string ProgramTitleUnderline = "----------------------------";
