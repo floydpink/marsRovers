@@ -39,3 +39,5 @@ MMRMMRMRRM
 Expected Output:
 1 3 N
 5 1 E
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/877098d80372aa73c9da146901250218 "githalytics.com")](http://githalytics.com/floydpink/marsRovers)
