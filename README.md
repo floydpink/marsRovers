@@ -41,3 +41,7 @@ Expected Output:
 5 1 E
 
 [![githalytics.com alpha](https://cruel-carlota.gopagoda.com/877098d80372aa73c9da146901250218 "githalytics.com")](http://githalytics.com/floydpink/marsRovers)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floydpink/marsRovers/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
